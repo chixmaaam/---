@@ -1,0 +1,1 @@
+document.body.innerHTML="<h1>今日は雨です</h1> ";

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript基礎</title>
+  <style>
+    .textarea {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-tmplate-rows 0.3s;
+    }
+
+    .textarea.hide {
+      /*display: none;*/
+      grid-template-rows: 0fr;
+    }
+
+    .textarea .textarea-inner{
+      overflow: hidden;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <h1>あいうえお</h1>
+  <p>サブテキスト</p>
+
+  <table id="calendar" border="1">
+    <caption>〇月のカレンダー</caption>
+    <thead>
+      <tr>
+        <th>日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th>土</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        </tr><tr>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>りんご</p>
+  <p>ばなな</p>
+  <p>ぶどう</p>
+
+  <div id="sweet">ケーキ</div>
+  
+  <div class="food">和食</div>
+  <div class="food">洋食</div>
+
+  <div id="box">
+    <img src="https://picsum.photos/300/300" alt="" class="medium">
+  </div>
+
+  <p class="outerlink">
+    <a href="https://google.co.jp">Googleへ</a>
+  </p>
+
+  <ul class="links">
+    <li><a href="./">ホーム</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://google.co.jp">Google</a></li>
+    <li><a href="https://www.microsoft.com/ja-jp">Microsoft</a></li>
+  </ul>
+
+  <figure class="featured-image">
+    <img src="https://picsum.photos/id/257/300/400" alt="水辺の街並み">
+    <!--ここにfigcaptionタグを挿入-->
+  </figure>
+
+  <div class="sample">
+    <a href="#" class="sample-link">リンク</a>
+  </div>
+
+  <button class="toggle" type="button" data-text="開く">隠す</button>
+  <div class="textarea">
+    <div class="textarea-inner">
+    <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、</p>
+    <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、</p>
+    </div>
+  </div>
+  
+    <script src="js/script.js"></script>
+</body>
+</html>
