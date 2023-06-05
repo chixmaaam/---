@@ -623,3 +623,48 @@ body {
 .pagetop:hover {
   opacity: .9;
 }
+
+.loader {
+  background-color: rgba(0 0 0 / .05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 9999;
+}
+
+.loader img {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.mouse-follow {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: fixed;
+  background-color: rgba(255 214 39 / .5);
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  margin-left: -30px;
+  margin-top: -30px;
+  pointer-events: none;
+  transition:
+  width .3s,
+  height .3s,
+  background-color .3s;
+}
+
+body.link-active .mouse-follow {
+  width: 90px;
+  height: 90px;
+  background-color: rgba(255 214 39 / .2);
+}
+
+html {
+  cursor: none;
+}
