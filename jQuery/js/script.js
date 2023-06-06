@@ -55,9 +55,9 @@ $('.works-thumb img').attr('alt', '古い家具')
 //$('.faq-openclose').toggleClass('is-open')
 
 //イベント操作
-$('body').on('click', '.faq-openclose',e => {
+$('body').on('click', '.faq-openclose', e => {
   console.log('clickしました')
- // $(e.target).off('click')
+  // $(e.target).off('click')
   $(e.target).toggleClass('is-open')
 })
 
@@ -70,39 +70,39 @@ $(document).ready(() => {
 })
 //$(() => {})
 
-$(window).on('load',() => {
+$(window).on('load', () => {
   console.log('ページロード完了')
   $('.loader').remove()
 })
 
 //イベントオブジェクト
-$('.faq-list *').on('click',e => {
+$('.faq-list *').on('click', e => {
   console.dir(e)
   e.stopPropagation()
 })
 
 //マウス追従
 const mouseFollow = $('.mouse-follow')
-let 
-mouseX = 0, //マウスのX座標
-mouseY =0, //マウスのY座標
-currentX = 0, //現在のX座標
-currentY = 0//現在のY座標
-$(window).on('mousemove',e => {
-  console.log(e.clientX,e.clientY)
+let
+  mouseX = 0, //マウスのX座標
+  mouseY = 0, //マウスのY座標
+  currentX = 0, //現在のX座標
+  currentY = 0//現在のY座標
+$(window).on('mousemove', e => {
+  //console.log(e.clientX,e.clientY)
   mouseX = e.clientX
   mouseY = e.clientY
-//  mouseFollow.css({
-//    'left' : e.clientX,
-//    'top' : e.clientY
- // })
+  //  mouseFollow.css({
+  //    'left' : e.clientX,
+  //    'top' : e.clientY
+  // })
 })
 
-function updateFollowPosition(){
-  let nowX = lerp(currentX,mouseX,0.1)
-  let nowY = lerp(currentY,mouseY,0.1)
-  currentX =nowX
-  currentY =nowY
+function updateFollowPosition() {
+  let nowX = lerp(currentX, mouseX, 0.1)
+  let nowY = lerp(currentY, mouseY, 0.1)
+  currentX = nowX
+  currentY = nowY
   mouseFollow.css({
     'left': nowX,
     'top': nowY
@@ -112,7 +112,7 @@ function updateFollowPosition(){
 updateFollowPosition()
 
 //c:curerent(現在地) d:destination(目的地) e:easing(イージング)
-function lerp(c, d, e =0.05) {
+function lerp(c, d, e = 0.05) {
   return c + (d - c) * e
 }
 
@@ -127,8 +127,8 @@ $('a,.faq-openclose').hover(
 
 //フェードイン・フェードアウト
 $('.tweet-show').on('click', () => {
-  $('.tweet-content-ls16').fadeIn(1000, function (){
-    $(this).css('background-color','yellow')
+  $('.tweet-content-ls16').fadeIn(1000, function () {
+    $(this).css('background-color', 'yellow')
   });
 });
 
@@ -140,24 +140,24 @@ $('.tweet-hide').on('click', () => {
 //$('.faq-openclose').on('click',e => {
 //  $(e.target).parent().next().show()
 //  const dd = $(e.target).parent().next()
-  //if( dd.is(':visible') ) {
-  //  dd.hide();
-  //} else {
-  //  dd.show()
-  //}
+//if( dd.is(':visible') ) {
+//  dd.hide();
+//} else {
+//  dd.show()
+//}
 //  dd.toggle(!dd.is(':visible'))
 //})
 
 $('.faq-openclose').on('click', e => {
   const dd = $(e.target).parent().next();
-//
-//  dd.toggle( !dd.is(':visible') );
-//
-//});
-$(e.target).toggleClass('is-open')
-//slideDown / slideUp / slideToggle
-//dd.slideDown(7000);
-dd.stop().slideToggle(!dd.is(':visible'))
+  //
+  //  dd.toggle( !dd.is(':visible') );
+  //
+  //});
+  $(e.target).toggleClass('is-open')
+  //slideDown / slideUp / slideToggle
+  //dd.slideDown(7000);
+  dd.stop().slideToggle(!dd.is(':visible'))
 })
 
 //タイマー処理
@@ -172,8 +172,98 @@ const tweetContent = $('.tweet-content-ls19')
 let counter = 0
 tweetContent.text(tweets[0]).fadeIn()
 
-setInterval(() => {
-  tweetContent.text(tweets[counter]).fadeOut(400,() => {
+let intervalID = setInterval(() => {
+  tweetContent.text(tweets[counter]).fadeOut(400, () => {
     counter++
+    console.log(tweets[counter])
+    if (counter === tweets.length) {
+      counter = 0
+      clearInterval(intervalID)
+    }
+    tweetContent.text(tweets[counter]).fadeIn()
   })
-},3000)
+}, 3000)
+console.log('インターバルID', intervalID)
+
+//inview
+$(window).on('load', () => {
+  const $serviceList = $('.service-list')
+  $(window).on('scroll', () => {
+    //console.log('スクロール')
+    let isInview = $serviceList.inView('topOnly', 150)
+    //if (isInview) {
+    //  console.log('ビューポートに入りました')
+    //} else {
+    //  console.log('ビューポートから外れました//')
+    //}
+    if (isInview && !$serviceList.hasClass('in-view')) {
+      $serviceList.addClass('in-view')
+    }
+  })
+  $(window).trigger('scroll')//仮想的にスクロールイベントを発生
+})
+
+$('.works-container').slick({
+  autoplay: true,
+  autoplaySpeed: 4000,
+  dots: true,
+  //fade: true,
+  speed: 1000,
+  pauseOnHover: false,
+  responsive: [
+    //768
+    {
+      breakpoint: 768,
+      settings: {
+        autoplaySpeed: 1000,
+      }
+    },
+    //960
+    {
+      breakpoint: 960,
+      settings: {
+        slidesToShow: 2,
+      }
+    }
+  ],
+})
+
+//lax.js - パララックス
+$(window).on('load', () => {
+  //lax.jsの起動
+  lax.init()
+  //ドライバーの設定
+  //第一引数：ドライバー名、第二引数：ドライバー関数
+  lax.addDriver(
+    'parallaxY',
+    () => {
+      return window.scrollY
+    }
+  )
+  //要素の追加
+  //第一引数：セレクタ、第二引数：ドライバーに対するCSSプロパティのアニメーション設定(複数設定可)、第三引数：オプション
+  lax.addElements(
+    '.lax-target',
+    {
+      'parallaxY': {
+
+        translateY: [
+          //ドライバーのマップ値 
+          ['elInY', 'elOutY'],
+          // ドライバーのマップ値に対するプロパティ値
+          //[-80,100]
+          {
+
+            767: [-80, 60],//スモールスクリーン
+
+            768: [-80, 100]//デスクトップ
+          }
+        ],
+        opacity: [
+          ['elInY', 'elInY+300'],
+          [0, 1]
+        ]
+      }
+    }
+  )
+})
